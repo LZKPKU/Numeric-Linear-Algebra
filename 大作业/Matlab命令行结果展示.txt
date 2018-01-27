@@ -1,0 +1,510 @@
+%第一问
+>> % Problem 1 (Gauss Elimination method)
+% N = 64,eps=1
+opts1 = [64,1];
+A = Data_A(opts1(1),opts1(2));
+f = Data_f(opts1(1),opts1(2));
+tic;
+out1 = Gauss(A,f);
+t1 = toc;
+err1 = calc_err(out1,opts1(1));
+show(t1,err1,'ge',0,opts1);
+
+% Problem 1 (Gauss Elimination method)
+% N = 64,eps=1e-3
+opts2 = [64,1e-3];
+A = Data_A(opts2(1),opts2(2));
+f = Data_f(opts2(1),opts2(2));
+tic;
+out2 = Gauss(A,f);
+t2 = toc;
+err2 = calc_err(out2,opts2(1));
+show(t2,err2,'ge',0,opts2);
+
+% Problem 1 (Gauss Elimination method)
+% N = 64,eps=1e-5
+opts3 = [64,1e-5];
+A = Data_A(opts3(1),opts3(2));
+f = Data_f(opts3(1),opts3(2));
+tic;
+out3 = Gauss(A,f);
+t3 = toc;
+err3 = calc_err(out3,opts3(1));
+show(t3,err3,'ge',0,opts3);
+
+Gauss Elimination Method:
+Parameters: N = 64, eps= 1.00e+00
+cpu: 16.71, error to ground truth: 1.00e-04
+Gauss Elimination Method:
+Parameters: N = 64, eps= 1.00e-03
+cpu: 15.28, error to ground truth: 1.00e-04
+Gauss Elimination Method:
+Parameters: N = 64, eps= 1.00e-05
+cpu: 11.80, error to ground truth: 1.00e-04
+
+
+>> % Problem 1 (Gauss Elimination method)
+% N = 64,eps=1
+opts1 = [64,1];
+A = Data_A(opts1(1),opts1(2));
+f = Data_f(opts1(1),opts1(2));
+gt = Data_gt(opts1(1),opts1(2));
+tic;
+out1 = Gauss(A,A*gt);
+t1 = toc;
+err1 = calc_err(out1,opts1(1));
+show(t1,err1,'ge',0,opts1);
+Gauss Elimination Method:
+Parameters: N = 64, eps= 1.00e+00
+cpu: 12.24, error to ground truth: 5.00e-15
+
+>> % N = 64,eps=1e-3
+opts2 = [64,1e-3];
+A = Data_A(opts2(1),opts2(2));
+f = Data_f(opts2(1),opts2(2));
+gt = Data_gt(opts2(1),opts2(2));
+tic;
+out2 = Gauss(A,A*gt);
+t2 = toc;
+err2 = calc_err(out2,opts2(1));
+show(t2,err2,'ge',0,opts2);
+Gauss Elimination Method:
+Parameters: N = 64, eps= 1.00e-03
+cpu: 13.08, error to ground truth: 1.07e-14
+
+>> % Problem 1 (Gauss Elimination method)
+% N = 64,eps=1e-5
+opts3 = [64,1e-5];
+A = Data_A(opts3(1),opts3(2));
+f = Data_f(opts3(1),opts3(2));
+gt = Data_gt(opts3(1),opts3(2));
+tic;
+out3 = Gauss(A,A*gt);
+t3 = toc;
+err3 = calc_err(out3,opts3(1));
+show(t3,err3,'ge',0,opts3);
+Gauss Elimination Method:
+Parameters: N = 64, eps= 1.00e-05
+cpu: 13.60, error to ground truth: 4.09e-15
+
+%第二问
+>> % N = 256, eps = 1e-5
+opts6 = [256,1e-5,1e-6];
+A = Data_A(opts6(1),opts6(2));
+f = Data_f(opts6(1),opts6(2));
+tic;
+[out6,iter6] = pcg(A,f,opts6,'point');
+t6 = toc;
+err6 = calc_err(out6,opts6(1));
+show(t6,err6,'pgs',iter6,opts6);
+Point Gauss-Seidel Iteration:
+Parameters: N = 256, eps= 1.00e-05,tolerance= 1.00e-06
+Iteration times: 52
+cpu:  8.91, error to ground truth: 1.66e-04
+
+%第三问
+>> opts5 = [32,1,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 32, eps= 1.00e+00,tolerance= 1.00e-06
+Iteration times: 4
+cpu:  0.06, error to ground truth: 4.02e-04
+
+>> opts5 = [32,1e-1,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 32, eps= 1.00e-01,tolerance= 1.00e-06
+Iteration times: 3
+cpu:  0.04, error to ground truth: 4.02e-04
+
+>> opts5 = [32,1e-3,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 32, eps= 1.00e-03,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  0.03, error to ground truth: 4.02e-04
+
+>> opts5 = [32,1e-5,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 32, eps= 1.00e-05,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  0.02, error to ground truth: 4.02e-04
+>> opts5 = [32,1e-7,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 32, eps= 1.00e-07,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  0.02, error to ground truth: 4.02e-04
+
+>> opts5 = [64,1,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 64, eps= 1.00e+00,tolerance= 1.00e-06
+Iteration times: 4
+cpu:  0.07, error to ground truth: 1.00e-04
+
+>> opts5 = [64,1e-1,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 64, eps= 1.00e-01,tolerance= 1.00e-06
+Iteration times: 3
+cpu:  0.06, error to ground truth: 1.00e-04
+
+>> opts5 = [64,1e-3,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 64, eps= 1.00e-03,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  0.03, error to ground truth: 1.01e-04
+
+>> opts5 = [64,1e-5,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 64, eps= 1.00e-05,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  0.03, error to ground truth: 1.00e-04
+
+>> opts5 = [64,1e-7,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 64, eps= 1.00e-07,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  0.04, error to ground truth: 1.00e-04
+
+>> opts5 = [128,1,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 128, eps= 1.00e+00,tolerance= 1.00e-06
+Iteration times: 4
+cpu:  0.21, error to ground truth: 2.51e-05
+
+>> opts5 = [128,1e-1,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 128, eps= 1.00e-01,tolerance= 1.00e-06
+Iteration times: 3
+cpu:  0.17, error to ground truth: 2.49e-05
+
+>> opts5 = [128,1e-3,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 128, eps= 1.00e-03,tolerance= 1.00e-06
+Iteration times: 2
+cpu:  0.11, error to ground truth: 2.51e-05
+
+>> opts5 = [128,1e-5,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 128, eps= 1.00e-05,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  0.12, error to ground truth: 2.51e-05
+
+>> opts5 = [128,1e-7,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 128, eps= 1.00e-07,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  0.06, error to ground truth: 2.51e-05
+
+
+>> opts5 = [256,1,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 256, eps= 1.00e+00,tolerance= 1.00e-06
+Iteration times: 4
+cpu:  0.55, error to ground truth: 6.27e-06
+
+>> opts5 = [256,1e-1,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 256, eps= 1.00e-01,tolerance= 1.00e-06
+Iteration times: 3
+cpu:  0.39, error to ground truth: 6.11e-06
+
+>> opts5 = [256,1e-1,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 256, eps= 1.00e-01,tolerance= 1.00e-06
+Iteration times: 3
+cpu:  0.39, error to ground truth: 6.11e-06
+
+>> opts5 = [256,1e-3,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 256, eps= 1.00e-03,tolerance= 1.00e-06
+Iteration times: 2
+cpu:  0.30, error to ground truth: 8.46e-06
+
+>> opts5 = [256,1e-5,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 256, eps= 1.00e-05,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  0.19, error to ground truth: 6.27e-06
+
+>> opts5 = [256,1e-7,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+gt = Data_gt(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 256, eps= 1.00e-07,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  0.19, error to ground truth: 6.27e-06
+
+>> opts5 = [512,1,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 512, eps= 1.00e+00,tolerance= 1.00e-06
+Iteration times: 4
+cpu:  2.22, error to ground truth: 1.57e-06
+
+>> opts5 = [512,1e-1,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 512, eps= 1.00e-01,tolerance= 1.00e-06
+Iteration times: 3
+cpu:  1.67, error to ground truth: 1.51e-06
+
+>> opts5 = [512,1e-3,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 512, eps= 1.00e-03,tolerance= 1.00e-06
+Iteration times: 2
+cpu:  1.14, error to ground truth: 1.07e-05
+
+>> opts5 = [512,1e-5,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 512, eps= 1.00e-05,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  0.64, error to ground truth: 1.62e-06
+
+>> opts5 = [512,1e-7,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+gt = Data_gt(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 512, eps= 1.00e-07,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  0.57, error to ground truth: 1.57e-06
+
+>> opts5 = [1024,1e-7,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+gt = Data_gt(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 1024, eps= 1.00e-07,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  7.24, error to ground truth: 3.92e-07
+
+>> opts5 = [1024,1e-5,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 1024, eps= 1.00e-05,tolerance= 1.00e-06
+Iteration times: 1
+cpu:  7.61, error to ground truth: 3.07e-05
+
+>> opts5 = [1024,1e-3,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 1024, eps= 1.00e-03,tolerance= 1.00e-06
+Iteration times: 2
+cpu: 16.19, error to ground truth: 1.41e-05
+
+>> opts5 = [1024,1e-1,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 1024, eps= 1.00e-01,tolerance= 1.00e-06
+Iteration times: 3
+cpu: 22.51, error to ground truth: 7.00e-07
+
+>> opts5 = [1024,1,1e-6];
+A = Data_A(opts5(1),opts5(2));
+f = Data_f(opts5(1),opts5(2));
+tic;
+[out5,iter5] = pcg(A,f,opts5,'line');
+t5 = toc;
+err5 = calc_err(out5,opts5(1));
+show(t5,err5,'lgs',iter5,opts5);
+Line Gauss-Seidel Iteration:
+Parameters: N = 1024, eps= 1.00e+00,tolerance= 1.00e-06
+Iteration times: 4
+cpu: 65.06, error to ground truth: 3.97e-07
